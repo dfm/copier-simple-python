@@ -1,0 +1,78 @@
+[project]
+name = "{{ python_project_name}}"
+description = "{{ project_description }}"
+authors = [
+    { name="{{ author_fullname }}", email="{{ author_email }}" },
+]
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "{% if copyright_license == 'Apache-2.0' %}Apache License{% elif copyright_license == "MIT" %}MIT License{% elif copyright_license == "BSD" %}BSD 2-Clause License{% endif %}" }
+classifiers = [
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Development Status :: 5 - Production/Stable",
+    {% if copyright_license == "Apache" -%}
+    "License :: OSI Approved :: Apache Software License",
+    {%- elif copyright_license == "MIT" -%}
+    "License :: OSI Approved :: MIT License",
+    {%- endif %}]
+dynamic = ["version"]
+dependencies = [
+    # "numpy",
+    # "astropy",
+]
+{% if project_homepage != "" or project_source_repository != "" or project_bug_tracker != "" %}
+[project.urls]
+{% if project_homepage %}"Homepage" = "{{ project_homepage }}"
+{% endif -%}
+{% if project_source_repository %}"Source" = "{{ project_source_repository }}"
+{% endif -%}
+{% if project_bug_tracker %}"Bug Tracker" = "{{ project_bug_tracker }}"
+{% endif -%}
+{% endif %}
+[project.optional-dependencies]
+test = ["pytest"]
+docs = []
+{% if compiled_code_support %}
+[build-system]
+requires = ["scikit-build-core", "nanobind", "oldest-supported-numpy"]
+build-backend = "scikit_build_core.build"
+
+[tool.scikit-build]
+metadata.version.provider = "scikit_build_core.metadata.setuptools_scm"
+build-dir = "build/{wheel_tag}"
+{% if c_or_cpp_support %}wheel.py-api = "cp312"{% endif %}
+
+[tool.setuptools_scm]
+write_to = "src/{{ python_project_name }}/_version.py"
+
+[tool.cibuildwheel]
+build-verbosity = 1
+{% if c_or_cpp_support %}
+[tool.cibuildwheel.macos.environment]
+MACOSX_DEPLOYMENT_TARGET = "10.14"
+{% endif %}{% else %}
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/{{ python_project_name }}/_version.py"
+{% endif %}
+[tool.black]
+target-version = ["py39"]
+line-length = 88
+
+[tool.ruff]
+target-version = "py39"
+line-length = 88
+select = ["F", "I", "E", "W", "YTT", "B", "Q", "PLE", "PLR", "PLW", "UP"]
+ignore = []
+exclude = []
+
+[tool.ruff.isort]
+known-first-party = ["{{ python_project_name }}"]
+combine-as-imports = true

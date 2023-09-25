@@ -1,4 +1,4 @@
-# Copyright 2022 Dan Foreman-Mackey
+# Copyright 2023 Dan Foreman-Mackey
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,9 +13,16 @@
 # limitations under the License.
 
 _subdirectory: template
-_jinja_extensions:
-  - copier_templates_extensions.TemplateExtensionLoader
-  - extensions/context.py:GetLicense
+_templates_suffix: .jinja
+_envops:
+  autoescape: false
+  block_end_string: "%}"
+  block_start_string: "{%"
+  comment_end_string: "#}"
+  comment_start_string: "{#"
+  keep_trailing_newline: true
+  variable_end_string: "}}"
+  variable_start_string: "{{"
 
 project_name:
   type: str
@@ -24,6 +31,7 @@ project_name:
 project_description:
   type: str
   help: A short description of your project
+  default: ""
 
 author_fullname:
   type: str
@@ -32,6 +40,37 @@ author_fullname:
 author_email:
   type: str
   help: Your email address
+
+project_homepage:
+  type: str
+  help: The URL for your project's homepage
+  default: ""
+
+project_source_repository:
+  type: str
+  help: The URL for your project's source repository
+  default: ""
+
+project_bug_tracker:
+  type: str
+  help: The URL for your project's bug tracker
+  default: "{% if 'github.com' in project_source_repository %}{{ project_source_repository }}/issues{% else %}{% endif %}"
+
+c_or_cpp_support:
+  type: bool
+  help: Whether to include support for compiling C or C++ code
+  default: false
+
+fortran_support:
+  type: bool
+  help: Whether to include support for compiling Fortran code
+  default: false
+
+compiled_code_support:
+  type: bool
+  help: Whether to include support for compiling code
+  default: "{{ c_or_cpp_support or fortran_support }}"
+  when: false
 
 copyright_holder:
   type: str
@@ -48,21 +87,20 @@ copyright_license:
   help: Your project's license
   default: "Apache-2.0"
   choices:
-    - "AGPL-3.0"
     - "Apache-2.0"
-    - "BSD-2-Clause"
-    - "BSD-3-Clause"
-    - "BSL-1.0"
-    - "CC0-1.0"
-    - "EPL-2.0"
-    - "GPL-2.0"
-    - "GPL-3.0"
-    - "LGPL-2.1"
     - "MIT"
-    - "MPL-2.0"
-    - "Unlicense"
+    - "Other"
 
 code_of_conduct_email:
   type: str
   help: The email contact for code of conduct inquiries
   default: "{{ author_email }}"
+
+python_project_name:
+  type: str
+  help: A Python-friendly name that can be used to import your project
+  default: "{{ project_name | lower | replace(' ', '_') | replace('-', '_') }}"
+  validator: >-
+    {% if not (python_project_name | regex_search('^[a-z][a-z0-9_]+$')) %}
+    python_project_name must start with a letter, followed one or more letters, digits or underscores all lowercase.
+    {% endif %}

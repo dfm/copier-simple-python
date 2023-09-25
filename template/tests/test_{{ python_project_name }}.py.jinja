@@ -1,0 +1,7 @@
+import {{ python_project_name }}
+
+
+{% if c_or_cpp_support %}
+def test_add():
+    assert {{ python_project_name }}.add(1, 2) == 3
+{% endif %}
