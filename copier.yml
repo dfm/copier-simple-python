@@ -61,17 +61,6 @@ c_or_cpp_support:
   help: Whether to include support for compiling C or C++ code
   default: false
 
-fortran_support:
-  type: bool
-  help: Whether to include support for compiling Fortran code
-  default: false
-
-compiled_code_support:
-  type: bool
-  help: Whether to include support for compiling code
-  default: "{{ c_or_cpp_support or fortran_support }}"
-  when: false
-
 copyright_holder:
   type: str
   help: The name of the person/entity holding the copyright

@@ -1,0 +1,5 @@
+from {{ python_project_name }}.lib{{ python_project_name }} import add_using_cpp
+
+
+def test_add_using_cpp(tolerance=1e-12):
+    assert abs(add_using_cpp(1.0, 2.0) - 3.0) < tolerance

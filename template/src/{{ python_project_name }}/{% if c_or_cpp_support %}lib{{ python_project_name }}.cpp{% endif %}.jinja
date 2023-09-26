@@ -3,10 +3,9 @@
 namespace nb = nanobind;
 using namespace nb::literals;
 
-double add_two_numbers(double a, double b) { return a + b; }
+double add(double a, double b) { return a + b; }
 
 NB_MODULE(lib{{ python_project_name }}, m) {
   m.doc() = "A simple example of an extension module built with nanobind";
-  m.def("add_two_numbers", &add_two_numbers, "a"_a, "b"_a,
-        "Add two floating point numbers together");
+  m.def("add_using_cpp", &add, "a"_a, "b"_a, "Add two floating point numbers together");
 }

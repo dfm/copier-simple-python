@@ -1,7 +1,7 @@
 import {{ python_project_name }}
 
 
-{% if c_or_cpp_support %}
-def test_add():
-    assert {{ python_project_name }}.add(1, 2) == 3
-{% endif %}
+def test_{{ python_project_name }}_version():
+    from importlib.metadata import version
+
+    assert {{ python_project_name }}.__version__ == version("{{ python_project_name }}")
