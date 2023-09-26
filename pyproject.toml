@@ -11,3 +11,6 @@ exclude = []
 
 [tool.ruff.isort]
 combine-as-imports = true
+
+[tool.pytest.ini_options]
+filterwarnings = ["ignore::DeprecationWarning"]
