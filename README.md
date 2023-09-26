@@ -15,7 +15,7 @@ this is not meant to be a one-size-fits-all solution.
 
 ## This repository
 
-This repository contains a [`copier``](https://copier.readthedocs.io) template,
+This repository contains a [`copier`](https://copier.readthedocs.io) template,
 meant to be a starting point for generating the skeleton for a new Python
 package. To use it, you'll need to [install `copier` as described in the
 documentation](https://copier.readthedocs.io), and then run:
