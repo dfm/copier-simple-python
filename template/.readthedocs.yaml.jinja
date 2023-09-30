@@ -5,12 +5,6 @@ submodules:
 
 build:
   os: ubuntu-20.04
-{%- if fortran_support %}
-  apt_packages:
-    - gcc
-    - g++
-    - gfortran
-{%- endif %}
   tools:
     python: "3.10"
 
