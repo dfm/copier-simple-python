@@ -25,3 +25,7 @@ copier copy gh:dfm/copier-simple-python my-new-package
 ```
 
 ## Why release your code?
+
+## What do we mean by "code"? Or "release"?
+
+## How should you release your code?
