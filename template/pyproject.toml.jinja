@@ -33,6 +33,7 @@ dependencies = [
 [project.optional-dependencies]
 test = ["pytest"]
 docs = ["sphinx", "sphinx_book_theme", "myst-nb"]
+dev = ["pre-commit", "black", "ruff", "nox"]
 {% if c_or_cpp_support %}
 [build-system]
 requires = ["scikit-build-core", "nanobind", "oldest-supported-numpy"]

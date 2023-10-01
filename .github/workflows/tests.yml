@@ -24,3 +24,6 @@ jobs:
           python -m pip install nox
       - name: Tests
         run: python -m nox --non-interactive --session tests
+        env:
+          GIT_AUTHOR_NAME: "Author Name"
+          GIT_AUTHOR_EMAIL: "author@git.email"
