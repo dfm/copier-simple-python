@@ -12,8 +12,8 @@ git = local["git"]
 
 @contextmanager
 def generate_project(**data):
-    data["project_name"] = data.get("project_name", "project")
-    data["project_description"] = data.get("project_name", "A test project")
+    data["project_name"] = data.get("project_name", "example project")
+    data["project_description"] = data.get("project_name", "An example project")
     data["author_fullname"] = data.get("author_fullname", "A Python Coder")
     data["author_email"] = data.get("author_email", "coder@python.codes")
     with TemporaryDirectory() as project:

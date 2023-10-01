@@ -10,7 +10,7 @@ license = { text = "{% if copyright_license == 'Apache-2.0' %}Apache License{% e
 classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 4 - Beta",
     {% if copyright_license == "Apache" -%}
     "License :: OSI Approved :: Apache Software License",
     {%- elif copyright_license == "MIT" -%}
@@ -32,7 +32,7 @@ dependencies = [
 {% endif %}
 [project.optional-dependencies]
 test = ["pytest"]
-docs = []
+docs = ["sphinx", "sphinx_book_theme", "myst-nb"]
 {% if c_or_cpp_support %}
 [build-system]
 requires = ["scikit-build-core", "nanobind", "oldest-supported-numpy"]
@@ -51,6 +51,10 @@ write_to = "src/{{ python_project_name }}/_version.py"
 
 [tool.cibuildwheel]
 build-verbosity = 1
+test-skip = "*-macosx_arm64"
+
+[tool.cibuildwheel.macos]
+archs = ["x86_64", "arm64"]
 
 [tool.cibuildwheel.macos.environment]
 MACOSX_DEPLOYMENT_TARGET = "10.14"
