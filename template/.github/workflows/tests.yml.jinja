@@ -39,8 +39,7 @@ jobs:
           python -m pip install nox
       - name: Run tests
         run: |
-          python -m nox --non-interactive --error-on-missing-interpreter \
-            {% raw %}--session ${{ matrix.nox-session }} --python ${{ matrix.python-version }}{% endraw %}
+          {% raw %}python -m nox --non-interactive --error-on-missing-interpreter --session ${{ matrix.nox-session }} --python ${{ matrix.python-version }}{% endraw %}
 
   build_sdist:
     runs-on: ubuntu-latest

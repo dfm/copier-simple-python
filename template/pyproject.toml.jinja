@@ -53,6 +53,7 @@ write_to = "src/{{ python_project_name }}/_version.py"
 [tool.cibuildwheel]
 build-verbosity = 1
 test-skip = "*-macosx_arm64"
+skip = "pp*"
 
 [tool.cibuildwheel.macos]
 archs = ["x86_64", "arm64"]
