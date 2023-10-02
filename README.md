@@ -26,6 +26,60 @@ copier copy gh:dfm/copier-simple-python my-new-package
 
 ## Why release your code?
 
+- Want to reuse your own code in other places
+  - So that you can find your code even when not on your usual machine
+  - Also in cloud/cluster/remote environments
+  - Encourage good coding practices
+  - Reduce need for copy pasting code snippets between projects
+- Want to let other people use and learn from your code
+  - To save everyone from reimplementing the wheel
+- To get feedback on your code
+- To get help improving code from others
+- Reproducibility & transparency
+- Credit?
+  - Some work towards code citation and tracking
+- Some definitions of "release" might also save on your support costs
+- Because you have to - aligned with funding agency priorities
+- Can help reduce fear of releasing "bad code"
+
+_Why shouldn't you release your code_:
+
+- Copyright issues - organization IP policy
+- Risk of getting scooped
+- Can be a lot of work - support requests, feature requests, bug reports, ...
+- Shame and fear of judgement
+- Insufficiently tested code cause issues if others use _wrong_ code
+- Insufficient documentation
+
 ## What do we mean by "code"? Or "release"?
+
+_Code_:
+
+- A package: not just loose code in a directory, something that can be installed
+- Modular and general
+- Script to generate figure for paper
+- Set of scripts for personal data reduction
+- Documentation is part of the code
+- Notebook walking through what you did
+- Anything that you can install that then _does something_
+- Queries to online(e.g.) archives
+- Directory structure of a project
+- A paper
+- ...
+
+_Release_:
+
+- On GitHub
+- Publishing in a refereed journal
+- Snapshot of the code at a specific point in time
+- Sharing with colleagues
+- PyPI or other package management index
+- Published on a web page
+- ...
+
+- Access / licensing
+- Installation
+- Documentation
+- Testing
 
 ## How should you release your code?
